@@ -164,8 +164,11 @@ def main() -> int:
         fires = [d.rstrip("/") for d in _list(ROOT) if d.endswith("/")]
     except Exception as e:
         print(f"FATAL: cannot list PyreCast root: {e}", file=sys.stderr)
+        _write_health(now, listed=0, ingested=0, missing=[], status="down",
+                      reason=f"PyreCast root list failed: {e}")
         return 1
 
+    listed_fires = list(fires)
     out_fires = []
     for fire in fires:
         try:
@@ -197,6 +200,32 @@ def main() -> int:
         except Exception as e:
             print(f"[{fire}] ERROR: {e}", file=sys.stderr)
 
+    # Coverage = (fires we successfully ingested) / (fires PyreCast lists).
+    # PyreCast listing IS the universe; anything they list but we drop is a
+    # silent regression that erodes operator trust (June 2026 ut-cottonwood
+    # case: pyretec/ vs elmfire/ path mismatch dropped ~40% of fires silently).
+    ingested_slugs = {f["fire"] for f in out_fires}
+    missing = sorted(s for s in listed_fires if s not in ingested_slugs)
+    coverage_pct = round(100.0 * len(ingested_slugs) / max(1, len(listed_fires)), 1)
+
+    # Hard floor: <60% coverage OR PyreCast lists fires but we got zero means
+    # something is systemically broken (path schema changed again, network,
+    # auth). Fail the GHA run so the cron email fires AND health.json shows
+    # `down` so the frontend badge surfaces it. >=60% but <80% is degraded
+    # (still ship, but badge it).
+    if not listed_fires:
+        # PyreCast lists nothing — off-season, quiet day, or upstream blip. Not
+        # our pipeline's failure to flag.
+        status, reason = "ok", None
+    elif not out_fires:
+        status, reason = "down", f"PyreCast lists {len(listed_fires)} fires, ingested 0"
+    elif coverage_pct < 60:
+        status, reason = "down", f"coverage {coverage_pct}% (<60% floor); missing: {','.join(missing[:8])}"
+    elif coverage_pct < 80:
+        status, reason = "degraded", f"coverage {coverage_pct}% (<80% target); missing: {','.join(missing[:8])}"
+    else:
+        status, reason = "ok", None
+
     payload = {
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": "PyreCast / Pyregence Consortium — ELMFIRE fire-spread forecast (MODELED, not observed)",
@@ -204,14 +233,52 @@ def main() -> int:
         "percentiles": PERCENTILES,
         "attribution": "Forecast data: PyreCast (Pyregence Consortium). Government public-safety use per PyreCast ToU §VI.",
         "count": len(out_fires),
+        "pyrecast_listed": len(listed_fires),
+        "ingested": len(out_fires),
+        "coverage_pct": coverage_pct,
+        "missing_fires": missing,
+        "status": status,
         "fires": out_fires,
     }
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     with open(OUT_PATH, "w") as f:
         json.dump(payload, f, separators=(",", ":"))
-    print(f"wrote {OUT_PATH}: {len(out_fires)} fire forecasts "
-          f"({os.path.getsize(OUT_PATH)} bytes)")
+    print(f"wrote {OUT_PATH}: {len(out_fires)}/{len(listed_fires)} fire forecasts "
+          f"({coverage_pct}% coverage, status={status}, {os.path.getsize(OUT_PATH)} bytes)")
+    if missing:
+        print(f"  missing: {', '.join(missing)}", file=sys.stderr)
+
+    _write_health(now, listed=len(listed_fires), ingested=len(out_fires),
+                  missing=missing, status=status, reason=reason)
+
+    # Fail the CI run on hard failures so the cron email fires (operator
+    # rarely reads these but it's the belt to the badge's suspenders).
+    if status == "down":
+        print(f"FATAL: spread pipeline status={status}: {reason}", file=sys.stderr)
+        return 2
     return 0
+
+
+HEALTH_PATH = os.path.join(os.path.dirname(__file__), "data", "health.json")
+
+
+def _write_health(now, *, listed, ingested, missing, status, reason):
+    """Sidecar watchdog file (matches firestorm-imsr-data / firestorm-ngfs-data
+    pattern). Frontend fetches this and drives a feed-status badge so a silent
+    coverage drop becomes operator-visible."""
+    os.makedirs(os.path.dirname(HEALTH_PATH), exist_ok=True)
+    health = {
+        "checked_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "status": status,
+        "pyrecast_listed": listed,
+        "ingested": ingested,
+        "coverage_pct": round(100.0 * ingested / max(1, listed), 1) if listed else 0.0,
+        "missing_fires": missing,
+        "reason": reason,
+        "thresholds": {"degraded_below_pct": 80, "down_below_pct": 60},
+    }
+    with open(HEALTH_PATH, "w") as f:
+        json.dump(health, f, separators=(",", ":"))
 
 
 if __name__ == "__main__":
