@@ -31,10 +31,16 @@ jobs:
         run: |
           git config user.name  'firestorm-bot'
           git config user.email 'firestorm-bot@users.noreply.github.com'
-          git add data/spread.json
+          git add data/spread.json data/health.json
           if git diff --cached --quiet; then
             echo 'No change'
           else
             git commit -m "spread update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-            git push
+            # Handle race with concurrent pushes (rare but real — happened
+            # 2026-06-25 when a manual push collided with an in-flight cron).
+            for attempt in 1 2 3; do
+              if git push; then break; fi
+              echo "push attempt $attempt failed; rebasing on remote and retrying"
+              git pull --rebase origin main || { echo "rebase failed, bailing"; exit 1; }
+            done
           fi
