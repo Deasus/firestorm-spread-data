@@ -107,15 +107,26 @@ def _runs_newest_first(fire: str) -> list[str]:
 
 
 def _read_isochrone(fire: str, run: str, pct: str):
-    base = f"{ROOT}{fire}/{run}/pyretec/landfire/{pct}/"
+    # PyreCast publishes under two parallel subtrees depending on the fire:
+    # <run>/pyretec/landfire/<pct>/  OR  <run>/elmfire/landfire/<pct>/ .
+    # Some fires only have one of the two (e.g. ut-cottonwood only publishes
+    # elmfire/). Try both so the layer doesn't silently drop those fires.
     stem = f"isochrones_{fire}_{run}_{pct}"
-    try:
-        shp = io.BytesIO(_get(base + stem + ".shp"))
-        shx = io.BytesIO(_get(base + stem + ".shx"))
-        dbf = io.BytesIO(_get(base + stem + ".dbf"))
-        prj = _get(base + stem + ".prj").decode("utf-8", "ignore")
-    except Exception as e:
-        print(f"  [{fire} {pct}] fetch failed: {e}", file=sys.stderr)
+    shp = shx = dbf = prj = None
+    last_err = None
+    for sub in ("pyretec", "elmfire"):
+        base = f"{ROOT}{fire}/{run}/{sub}/landfire/{pct}/"
+        try:
+            shp = io.BytesIO(_get(base + stem + ".shp"))
+            shx = io.BytesIO(_get(base + stem + ".shx"))
+            dbf = io.BytesIO(_get(base + stem + ".dbf"))
+            prj = _get(base + stem + ".prj").decode("utf-8", "ignore")
+            break
+        except Exception as e:
+            last_err = e
+            shp = shx = dbf = prj = None
+    if shp is None:
+        print(f"  [{fire} {pct}] fetch failed: {last_err}", file=sys.stderr)
         return None
     epsg = _utm_zone_from_prj(prj)
     if not epsg:
