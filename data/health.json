@@ -1,1 +1,1 @@
-{"checked_at":"2026-06-26T12:12:38Z","status":"ok","pyrecast_listed":23,"ingested":22,"coverage_pct":95.7,"missing_fires":["or-lytle"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-06-26T14:48:16Z","status":"ok","pyrecast_listed":22,"ingested":22,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
