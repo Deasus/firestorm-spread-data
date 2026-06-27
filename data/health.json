@@ -1,1 +1,1 @@
-{"checked_at":"2026-06-27T12:19:45Z","status":"ok","pyrecast_listed":28,"ingested":27,"coverage_pct":96.4,"missing_fires":["id-shingle-creek"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-06-27T14:10:08Z","status":"ok","pyrecast_listed":22,"ingested":22,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
