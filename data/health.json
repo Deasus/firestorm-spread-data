@@ -1,1 +1,1 @@
-{"checked_at":"2026-06-29T18:23:50Z","status":"ok","pyrecast_listed":34,"ingested":33,"coverage_pct":97.1,"missing_fires":["ut-snyder-mesa"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-06-29T20:29:08Z","status":"ok","pyrecast_listed":34,"ingested":34,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
