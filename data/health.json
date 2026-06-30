@@ -1,1 +1,1 @@
-{"checked_at":"2026-06-30T12:24:06Z","status":"ok","pyrecast_listed":40,"ingested":40,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-06-30T15:15:53Z","status":"ok","pyrecast_listed":43,"ingested":41,"coverage_pct":95.3,"missing_fires":["ut-maple-peak","ut-snyder-mesa"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
