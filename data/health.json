@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-04T15:05:57Z","status":"ok","pyrecast_listed":14,"ingested":14,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-04T16:15:41Z","status":"ok","pyrecast_listed":18,"ingested":17,"coverage_pct":94.4,"missing_fires":["nv-parsnip-peak"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
