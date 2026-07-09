@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-09T12:17:23Z","status":"ok","pyrecast_listed":40,"ingested":39,"coverage_pct":97.5,"missing_fires":["wa-chelan-hills"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-09T15:35:37Z","status":"ok","pyrecast_listed":35,"ingested":35,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
