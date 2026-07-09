@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-09T19:10:01Z","status":"ok","pyrecast_listed":39,"ingested":37,"coverage_pct":94.9,"missing_fires":["id-ra-6-ada-co-claremont","mt-ridgetop-custer"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-09T20:56:21Z","status":"ok","pyrecast_listed":36,"ingested":36,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
