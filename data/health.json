@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-11T23:32:44Z","status":"ok","pyrecast_listed":40,"ingested":37,"coverage_pct":92.5,"missing_fires":["or-hoop","tx-cottonwood","ut-babylon"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-12T01:08:34Z","status":"ok","pyrecast_listed":46,"ingested":46,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
