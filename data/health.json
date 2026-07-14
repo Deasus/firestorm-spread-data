@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-14T13:44:29Z","status":"ok","pyrecast_listed":46,"ingested":46,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-14T15:15:35Z","status":"ok","pyrecast_listed":38,"ingested":37,"coverage_pct":97.4,"missing_fires":["mt-black-coulee"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
