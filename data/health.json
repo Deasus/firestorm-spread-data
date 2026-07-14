@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-14T10:28:48Z","status":"ok","pyrecast_listed":44,"ingested":42,"coverage_pct":95.5,"missing_fires":["nv-18-mile","nv-39"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-14T11:59:09Z","status":"ok","pyrecast_listed":45,"ingested":45,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
