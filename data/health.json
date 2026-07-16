@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-16T21:55:13Z","status":"ok","pyrecast_listed":34,"ingested":34,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-16T22:48:01Z","status":"ok","pyrecast_listed":36,"ingested":31,"coverage_pct":86.1,"missing_fires":["ut-grizzly-ridge","ut-stookey","wa-kaiser-canyon","wa-lyons-ferry","wa-three-queens"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
