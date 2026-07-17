@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-17T09:21:41Z","status":"ok","pyrecast_listed":70,"ingested":70,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-17T11:07:49Z","status":"ok","pyrecast_listed":75,"ingested":73,"coverage_pct":97.3,"missing_fires":["fl-3-bravo","fl-mitchells"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
