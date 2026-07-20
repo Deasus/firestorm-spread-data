@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-20T20:15:36Z","status":"ok","pyrecast_listed":50,"ingested":50,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-20T21:33:31Z","status":"ok","pyrecast_listed":53,"ingested":51,"coverage_pct":96.2,"missing_fires":["or-stone-creek","wa-three-queens"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
