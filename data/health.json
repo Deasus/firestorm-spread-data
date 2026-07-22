@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-22T20:08:38Z","status":"ok","pyrecast_listed":35,"ingested":35,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-22T21:30:44Z","status":"ok","pyrecast_listed":36,"ingested":35,"coverage_pct":97.2,"missing_fires":["ut-rocky-pass"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
