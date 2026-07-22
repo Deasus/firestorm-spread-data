@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-22T21:30:44Z","status":"ok","pyrecast_listed":36,"ingested":35,"coverage_pct":97.2,"missing_fires":["ut-rocky-pass"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-22T22:37:17Z","status":"ok","pyrecast_listed":34,"ingested":31,"coverage_pct":91.2,"missing_fires":["wa-nason-ridge","wa-willy","wy-fish-creek"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
