@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-23T15:25:20Z","status":"ok","pyrecast_listed":37,"ingested":31,"coverage_pct":83.8,"missing_fires":["wa-kaiser-canyon","wa-little-giant","wa-modrite","wa-ptarmigan","wa-willy","wy-fish-creek"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-23T17:02:06Z","status":"ok","pyrecast_listed":37,"ingested":37,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
