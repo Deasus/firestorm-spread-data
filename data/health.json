@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-24T20:09:38Z","status":"ok","pyrecast_listed":50,"ingested":50,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-24T21:29:04Z","status":"ok","pyrecast_listed":47,"ingested":46,"coverage_pct":97.9,"missing_fires":["or-bologna"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
