@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-30T23:52:57Z","status":"ok","pyrecast_listed":44,"ingested":44,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-31T01:48:56Z","status":"ok","pyrecast_listed":46,"ingested":45,"coverage_pct":97.8,"missing_fires":["tx-hog"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
