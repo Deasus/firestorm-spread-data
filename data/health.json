@@ -1,1 +1,1 @@
-{"checked_at":"2026-07-31T05:24:20Z","status":"ok","pyrecast_listed":51,"ingested":45,"coverage_pct":88.2,"missing_fires":["ca-woodside","mt-judith-landing","nm-red-hill","tx-hog","tx-popcorn","wy-flat-top"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-07-31T08:18:16Z","status":"ok","pyrecast_listed":55,"ingested":48,"coverage_pct":87.3,"missing_fires":["ca-woodside","mt-judith-landing","mt-moose","nm-red-hill","tx-hog","tx-popcorn","wy-flat-top"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
