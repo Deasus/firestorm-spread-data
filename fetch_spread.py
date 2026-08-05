@@ -11,9 +11,11 @@ spread extent for each active fire, with an uncertainty envelope (10th / 50th /
 90th percentile of the ensemble). That is the leap from a situational-awareness
 COP to a predictive decision-support tool.
 
-WHAT WE PULL: data.pyrecast.org/fire_spread_forecast/<fire>/<run>/pyretec/
-landfire/<pct>/isochrones_<fire>_<run>_<pct>.shp  — the modeled fire EXTENT
-polygon at that ensemble percentile (UTM, per-fire zone). We take 10/50/90 as
+WHAT WE PULL: data.pyrecast.org/fire_spread_forecast/<fire>/<run>/elmfire/
+landfire/<pct>/isochrones.shp  — the modeled fire EXTENT
+polygon at that ensemble percentile (UTM, per-fire zone). (Filename + subtree
+both changed upstream 2026-08-05; the fetcher now DISCOVERS the stem from the
+directory listing rather than constructing it — see _read_isochrone.) We take 10/50/90 as
 core / likely / outer-cone. (PyreCast also publishes per-hour time-of-arrival
 GeoTIFFs, but those need GDAL; the isochrone shapefile gives the spread extent
 keylessly and is enough for the headline overlay.)
@@ -81,9 +83,23 @@ def _utm_zone_from_prj(prj: str) -> str | None:
 
 
 def _coarsen(points: list, n: int) -> list:
+    """Decimate to AT MOST n points, preserving first and last.
+
+    2026-08-05 — FIXED an off-by-floor that silently defeated the cap. The old
+    `step = len(points) // n` floors to 1 for any length in (n, 2n), so a
+    239-point ring against a 120 cap got step=1 and passed through UNCHANGED.
+    Measured on a live full-coverage run: 466 of 468 rings exceeded the cap,
+    averaging 198 verts, and spread.json came out 2.0 MB against this file's
+    stated ~400 KB budget. Ceiling division actually enforces the cap.
+
+    Pre-existing bug, not introduced by the filename fix — but it only became
+    load-bearing once coverage went 27 → 54 fires, which doubled the payload
+    on top of it. The single-file frontend fetches this on every poll, so an
+    unbounded feed is a real cost to the operator, not just to storage.
+    """
     if len(points) <= n:
         return points
-    step = max(1, len(points) // n)
+    step = -(-len(points) // n)          # ceil division — guarantees <= n+1 out
     out = points[::step]
     if out[-1] != points[-1]:
         out.append(points[-1])
@@ -109,22 +125,65 @@ def _runs_newest_first(fire: str) -> list[str]:
 def _read_isochrone(fire: str, run: str, pct: str):
     # PyreCast publishes under two parallel subtrees depending on the fire:
     # <run>/pyretec/landfire/<pct>/  OR  <run>/elmfire/landfire/<pct>/ .
-    # Some fires only have one of the two (e.g. ut-cottonwood only publishes
-    # elmfire/). Try both so the layer doesn't silently drop those fires.
-    stem = f"isochrones_{fire}_{run}_{pct}"
+    #
+    # 2026-08-05 — FILENAME CONVENTION CHANGED UPSTREAM. PyreCast used to
+    # publish  isochrones_<fire>_<run>_<pct>.shp  and now publishes plain
+    # isochrones.shp. Verified across az-butte / ca-cassie / mt-moose /
+    # or-hagen: the old stem 404s on every fire, `isochrones.shp` returns 200
+    # on every fire. That rename is what broke this pipeline for 69 consecutive
+    # runs (last success 2026-07-31T15:28Z) while operators were served
+    # 5-day-old forecasts. Schema itself is UNCHANGED — verified by downloading
+    # and parsing: shapeType 5 (Polygon), DBF carries only FID (the parser
+    # reads geometry + .prj only, no attribute fields), .prj still
+    # WGS_1984_UTM_Zone_<n><hemi> so _utm_zone_from_prj still matches, and a
+    # reprojected sample vertex lands at plausible CONUS coords.
+    #
+    # `pyretec/` IS ALSO GONE — 404 on all four fires probed. Kept in the
+    # candidate list (cheap, and older archived runs may still have it) but
+    # ordered AFTER elmfire so the common case costs one request, not two.
+    # That ordering matters: the 403 Forbidden errors in the failure logs were
+    # NOT an auth problem — they appeared only AFTER ~150 rapid 404s, i.e.
+    # PyreCast throttling us for hammering nonexistent paths. Halving the
+    # request count removes the trigger. (Confirmed: 25 rapid requests to a
+    # path that EXISTS returned 200 every time.)
+    #
+    # DISCOVER, DON'T GUESS: rather than hardcode the new name and be broken
+    # again on the next rename, list the directory and pick whatever
+    # isochrones*.shp is actually there. Falls back to the two known literal
+    # stems if the listing is unavailable.
     shp = shx = dbf = prj = None
     last_err = None
-    for sub in ("pyretec", "elmfire"):
+    for sub in ("elmfire", "pyretec"):
         base = f"{ROOT}{fire}/{run}/{sub}/landfire/{pct}/"
+        stems = []
         try:
-            shp = io.BytesIO(_get(base + stem + ".shp"))
-            shx = io.BytesIO(_get(base + stem + ".shx"))
-            dbf = io.BytesIO(_get(base + stem + ".dbf"))
-            prj = _get(base + stem + ".prj").decode("utf-8", "ignore")
-            break
+            names = _list(base)
+            # Prefer the shortest matching stem: plain "isochrones" sorts ahead
+            # of any longer decorated variant, and if upstream ever ships both
+            # we want the canonical one.
+            found = sorted(
+                (n[:-4] for n in names if n.startswith("isochrones") and n.endswith(".shp")),
+                key=len,
+            )
+            stems.extend(found)
         except Exception as e:
             last_err = e
-            shp = shx = dbf = prj = None
+        # Known literals as a safety net if the directory listing is blocked.
+        for literal in ("isochrones", f"isochrones_{fire}_{run}_{pct}"):
+            if literal not in stems:
+                stems.append(literal)
+        for stem in stems:
+            try:
+                shp = io.BytesIO(_get(base + stem + ".shp"))
+                shx = io.BytesIO(_get(base + stem + ".shx"))
+                dbf = io.BytesIO(_get(base + stem + ".dbf"))
+                prj = _get(base + stem + ".prj").decode("utf-8", "ignore")
+                break
+            except Exception as e:
+                last_err = e
+                shp = shx = dbf = prj = None
+        if shp is not None:
+            break
     if shp is None:
         print(f"  [{fire} {pct}] fetch failed: {last_err}", file=sys.stderr)
         return None
