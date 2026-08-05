@@ -70,7 +70,7 @@ jobs:
 
           # Self-reported coverage sidecars: repo | path | min coverage %
           SIDECARS = [
-            ("firestorm-spread-data", "data/health.json", 100.5),  # TEMP negative test
+            ("firestorm-spread-data", "data/health.json", 90.0),
           ]
 
           def gh(path):
