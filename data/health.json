@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-08T14:09:00Z","status":"ok","pyrecast_listed":73,"ingested":73,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-08T14:49:59Z","status":"ok","pyrecast_listed":73,"ingested":70,"coverage_pct":95.9,"missing_fires":["wa-little-giant","wa-little-goose","wa-luna"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
