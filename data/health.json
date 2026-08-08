@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-08T13:28:52Z","status":"ok","pyrecast_listed":76,"ingested":74,"coverage_pct":97.4,"missing_fires":["tx-harley","tx-high-fence"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-08T14:09:00Z","status":"ok","pyrecast_listed":73,"ingested":73,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
