@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-09T13:33:15Z","status":"ok","pyrecast_listed":68,"ingested":68,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-09T14:10:21Z","status":"ok","pyrecast_listed":72,"ingested":70,"coverage_pct":97.2,"missing_fires":["wa-hudspeth","wa-skookum"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
