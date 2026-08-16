@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-16T18:47:27Z","status":"ok","pyrecast_listed":38,"ingested":37,"coverage_pct":97.4,"missing_fires":["co-post"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-16T19:13:15Z","status":"ok","pyrecast_listed":39,"ingested":35,"coverage_pct":89.7,"missing_fires":["co-post","nv-healy","nv-stallion","ut-widemouth-2"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
