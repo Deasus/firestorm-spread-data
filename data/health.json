@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-20T15:27:17Z","status":"ok","pyrecast_listed":35,"ingested":35,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-20T16:02:00Z","status":"ok","pyrecast_listed":35,"ingested":31,"coverage_pct":88.6,"missing_fires":["wa-sinlahekin","wa-three-queens","wy-red-canyon","wy-west-coal-creek"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
