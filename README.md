@@ -1,6 +1,6 @@
 # firestorm-spread-data
 
-**Predicted fire spread** for [FIRESTORM](https://github.com/Deasus/Firestorm) — the leap from
+**Predicted fire spread** for [FIRESTORM](https://github.com/Deasus/firestorm-platform) — the leap from
 "where is the fire **now**" to "where is it **going**." Mirrors the open **PyreCast (Pyregence
 Consortium) ELMFIRE** fire-spread forecasts into a slim GeoJSON the single-file frontend reads.
 
