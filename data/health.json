@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-22T10:41:14Z","status":"ok","pyrecast_listed":27,"ingested":27,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-22T11:10:53Z","status":"ok","pyrecast_listed":27,"ingested":26,"coverage_pct":96.3,"missing_fires":["or-wrights-spring"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
