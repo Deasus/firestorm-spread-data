@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-22T20:40:40Z","status":"ok","pyrecast_listed":20,"ingested":19,"coverage_pct":95.0,"missing_fires":["mt-cherry-peak"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-22T21:11:30Z","status":"ok","pyrecast_listed":19,"ingested":18,"coverage_pct":94.7,"missing_fires":["id-moose-mountain"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
