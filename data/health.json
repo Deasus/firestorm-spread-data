@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-22T19:51:09Z","status":"ok","pyrecast_listed":22,"ingested":22,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-22T20:11:05Z","status":"ok","pyrecast_listed":22,"ingested":20,"coverage_pct":90.9,"missing_fires":["id-upper-smith","wa-sinlahekin"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
