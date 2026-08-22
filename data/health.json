@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-22T20:11:05Z","status":"ok","pyrecast_listed":22,"ingested":20,"coverage_pct":90.9,"missing_fires":["id-upper-smith","wa-sinlahekin"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-22T20:40:40Z","status":"ok","pyrecast_listed":20,"ingested":19,"coverage_pct":95.0,"missing_fires":["mt-cherry-peak"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
