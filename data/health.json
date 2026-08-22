@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-22T21:11:30Z","status":"ok","pyrecast_listed":19,"ingested":18,"coverage_pct":94.7,"missing_fires":["id-moose-mountain"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-22T21:36:04Z","status":"ok","pyrecast_listed":18,"ingested":18,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
