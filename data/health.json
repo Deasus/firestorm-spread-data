@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-22T21:52:39Z","status":"ok","pyrecast_listed":18,"ingested":16,"coverage_pct":88.9,"missing_fires":["nv-shoshone","or-paradise"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-22T22:10:42Z","status":"ok","pyrecast_listed":16,"ingested":16,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
