@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-23T04:52:25Z","status":"ok","pyrecast_listed":15,"ingested":15,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-23T05:19:20Z","status":"ok","pyrecast_listed":15,"ingested":14,"coverage_pct":93.3,"missing_fires":["wa-three-queens"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
