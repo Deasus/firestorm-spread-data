@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-23T21:52:32Z","status":"ok","pyrecast_listed":38,"ingested":38,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-23T22:10:17Z","status":"ok","pyrecast_listed":39,"ingested":32,"coverage_pct":82.1,"missing_fires":["wa-goat","wa-little-giant","wa-luna","wa-sinlahekin","wa-sisi","wa-three-queens","wa-thunder-creek"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
