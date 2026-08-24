@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-24T23:13:33Z","status":"ok","pyrecast_listed":45,"ingested":45,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-24T23:36:17Z","status":"ok","pyrecast_listed":49,"ingested":46,"coverage_pct":93.9,"missing_fires":["mt-brothers","or-north-pole","tx-starkey"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
