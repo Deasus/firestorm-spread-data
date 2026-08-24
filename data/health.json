@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-24T10:19:16Z","status":"ok","pyrecast_listed":51,"ingested":47,"coverage_pct":92.2,"missing_fires":["fl-cane-patch","fl-dolphin","ok-long","tx-starkey"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-24T10:56:32Z","status":"ok","pyrecast_listed":47,"ingested":47,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
