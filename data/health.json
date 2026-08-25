@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-25T07:08:50Z","status":"ok","pyrecast_listed":56,"ingested":56,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-25T08:41:31Z","status":"ok","pyrecast_listed":58,"ingested":57,"coverage_pct":98.3,"missing_fires":["mt-brothers"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
