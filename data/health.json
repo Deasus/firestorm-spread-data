@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-30T06:04:00Z","status":"ok","pyrecast_listed":77,"ingested":77,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-30T11:55:59Z","status":"ok","pyrecast_listed":73,"ingested":72,"coverage_pct":98.6,"missing_fires":["wa-high-lava"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
