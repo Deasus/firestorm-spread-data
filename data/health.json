@@ -1,1 +1,1 @@
-{"checked_at":"2026-08-31T18:23:59Z","status":"ok","pyrecast_listed":35,"ingested":31,"coverage_pct":88.6,"missing_fires":["wa-sinlahekin","wa-sisi","wa-three-queens","wa-west-fork"],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
+{"checked_at":"2026-08-31T23:00:01Z","status":"ok","pyrecast_listed":38,"ingested":38,"coverage_pct":100.0,"missing_fires":[],"reason":null,"thresholds":{"degraded_below_pct":80,"down_below_pct":60}}
