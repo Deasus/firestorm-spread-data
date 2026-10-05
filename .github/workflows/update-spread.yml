@@ -1,8 +1,11 @@
 name: Update Fire Spread Forecast (PyreCast/ELMFIRE)
 
-# PyreCast publishes new ELMFIRE runs a few times/day per active fire. A 20-min
-# cron easily keeps up; no aggressive self-redispatch loop needed (unlike the
-# real-time detection feeds). */20 is throttled by GHA but that's fine here.
+# CADENCE (2026-10-05): a self-re-dispatching chain, the pattern firestorm-goes-fire-data
+# proved. GitHub's `schedule` is best-effort: measured 2026-10-05, this cron ran only ~5
+# times a day (72/day designed). Each run queues its successor FIRST (the concurrency
+# group holds it until this run ends, so a failed or cancelled run cannot break the chain),
+# does its work, then waits out the rest of a 20-min slot. The cron is now only a dead-man restart.
+# PyreCast publishes new ELMFIRE runs a few times/day per active fire; a 20-min slot keeps up.
 on:
   schedule:
     - cron: '*/20 * * * *'
@@ -10,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  actions: write                 # self re-dispatch
 
 jobs:
   update:
@@ -17,9 +21,18 @@ jobs:
     concurrency:
       group: update-spread
       cancel-in-progress: false
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
+      - name: mark the slot start
+        run: echo "SLOT_START=$(date +%s)" >> "$GITHUB_ENV"
+
       - uses: actions/checkout@v4
+
+      - name: queue the next run (first, so this run cannot break the chain)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run update-spread.yml --ref main || echo "::warning::re-dispatch failed; the schedule will restart the chain"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -44,3 +57,9 @@ jobs:
               git pull --rebase origin main || { echo "rebase failed, bailing"; exit 1; }
             done
           fi
+
+      - name: wait out the rest of the 20-min slot
+        if: always()
+        run: |
+          left=$(( 1200 - ($(date +%s) - SLOT_START) ))
+          if [ "$left" -gt 0 ]; then echo "sleeping ${left}s to the next slot"; sleep "$left"; fi
